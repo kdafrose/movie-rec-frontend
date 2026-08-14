@@ -1,4 +1,4 @@
-const BASE_URL = 'https://88mfhtpanb.execute-api.ca-west-1.amazonaws.com'
+const BASE_URL = import.meta.env.API_BASE_URL;
 
 /**
  * API function for methods: POST, DELETE, PATCH 
