@@ -1,5 +1,7 @@
 import type { Route } from "./+types/home";
-import { Welcome } from "../welcome/welcome";
+import Navbar from "~/components/navbar";
+import AuthNavbar from "~/components/authNavbar";
+import Signin from "./signin";
 
 export function meta({}: Route.MetaArgs) {
   return [
@@ -9,5 +11,7 @@ export function meta({}: Route.MetaArgs) {
 }
 
 export default function Home() {
-  return <Welcome />;
+  return (
+    <h1>Hello</h1>
+);
 }
