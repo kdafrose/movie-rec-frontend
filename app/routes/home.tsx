@@ -1,6 +1,8 @@
 import type { Route } from "./+types/home";
+import {useEffect, useState} from "react";
 import MovieCarousel from "../components/MovieCarousel";
 import { MOVIES_SAMPLE } from "../data/movies_sample";
+import { topRatedMovies, getUpcomingMovies, nowPlayingMovies as fetchaNowPlayingMovies, popularMovies as fetchPopularMovies} from "~/api/movies";
 
 export function meta({}: Route.MetaArgs) {
   return [
@@ -10,17 +12,44 @@ export function meta({}: Route.MetaArgs) {
 }
 
 export default function Home() {
+  const [movies, setMovies] = useState([]);
+  const [upcomingMovies, setUpcomingMovies] = useState([]);
+  const [popularMovies, setPopularMovies] = useState([]);
+  const [nowPlayingMovies, setNowPlayingMovies] = useState([]);
+  
+  useEffect(() => {
+      const fetchMovies = async () => {
+          try {
+              const [topMovies, upcomingMoviesData, popularMoviesData, nowPlayingMoviesData] = await Promise.all([
+                  topRatedMovies(),
+                  getUpcomingMovies(),
+                  fetchPopularMovies(),
+                  fetchaNowPlayingMovies()
+              ]);
+
+              setMovies(topMovies.results);
+              setUpcomingMovies(upcomingMoviesData.results);
+              setPopularMovies(popularMoviesData.results);
+              setNowPlayingMovies(nowPlayingMoviesData.results);
+          } catch (err) {
+              console.error("Failed to fetch movies:", err);
+          }
+      };
+
+      fetchMovies();
+  }, []);
+
   return (
     <>
       <div className="bg-white">
         <div className="mx-auto max-w-7xl py-24 sm:px-6 sm:py-8 lg:px-8">
           <div className="relative isolate overflow-hidden bg-gray-900 px-6 pt-16 shadow-2xl sm:rounded-3xl sm:px-16 md:pt-24 lg:flex lg:gap-x-20 lg:px-24 lg:pt-0">
             <svg viewBox="0 0 1024 1024" aria-hidden="true" className="absolute top-1/2 left-1/2 -z-10 size-256 -translate-y-1/2 mask-[radial-gradient(closest-side,white,transparent)] sm:left-full sm:-ml-80 lg:left-1/2 lg:ml-0 lg:-translate-x-1/2 lg:translate-y-0">
-              <circle r="512" cx="512" cy="512" fill="url(#759c1415-0410-454c-8f7c-9a820de03641)" fill-opacity="0.7" />
+              <circle r="512" cx="512" cy="512" fill="url(#759c1415-0410-454c-8f7c-9a820de03641)" fillOpacity="0.7" />
               <defs>
                 <radialGradient id="759c1415-0410-454c-8f7c-9a820de03641">
-                  <stop stop-color="#7775D6" />
-                  <stop offset="1" stop-color="#E935C1" />
+                  <stop stopColor="#7775D6" />
+                  <stop offset="1" stopColor="#E935C1" />
                 </radialGradient>
               </defs>
             </svg>
@@ -42,7 +71,10 @@ export default function Home() {
         </div>
       </div>
 
-      <MovieCarousel movies={MOVIES_SAMPLE} title="Top Rated Movies" />
+      <MovieCarousel movies={upcomingMovies} title="Upcoming Movies" />
+      <MovieCarousel movies={popularMovies} title="Popular Movies" />
+      <MovieCarousel movies={nowPlayingMovies} title="Now Playing Movies" />
+      <MovieCarousel movies={movies} title="Top Rated Movies" />
     </>
   );
 }

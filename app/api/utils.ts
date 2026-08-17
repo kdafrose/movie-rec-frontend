@@ -65,3 +65,24 @@ export const getApiCall = async(endpoint:string, queryParams?:Record<string, str
     }
 }
 
+/**
+ * GET request to the TMDB Api 
+ * @param url 
+ * @param token 
+ * @returns 
+ */
+export const getTMDBCall = async(url:string, token:string) => {
+    try{
+        const response = await fetch(url, {
+            method:'GET',
+            headers:{
+                accept:'application/json',
+                Authorization:`Bearer ${token}`
+            }
+        })
+
+        return await response.json();
+    } catch(err) {
+        console.error('TMDB GET Request Error: ', err);
+    }
+}

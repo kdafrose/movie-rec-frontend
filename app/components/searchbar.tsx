@@ -1,7 +1,12 @@
 import React from "react";
-import { useState } from "react";
+import { useNavigate } from "react-router";
 
 export default function SearchBar(){
+    const navigate = useNavigate();
+    const handleSearch = (searchText: string) => {
+        // Navigate to the search results page with the search query as a parameter
+        navigate(`/search/${searchText}`);
+    };
 
     return (
         <form className="max-w-md mx-auto">   
@@ -19,7 +24,7 @@ export default function SearchBar(){
                     if (e.key === "Enter") {
                         e.preventDefault(); // disable the default on submit behaviour from form (prevent browser page reload)
                         const searchText = e.currentTarget.value;
-                        console.log(searchText);
+                        handleSearch(searchText);
                     }
                 }}
                 />
