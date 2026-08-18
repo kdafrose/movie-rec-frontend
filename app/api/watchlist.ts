@@ -1,15 +1,15 @@
 import { apiCall, getApiCall } from "./utils";
 
-export const addMovieToWatchlist = async(token:string, movieId:number) => {
+export const addMovieToWatchlist = async(token:boolean, movieId:number) => {
     const body = {movieId:movieId.toString()};
     return await apiCall('/addToWatchlist', 'POST', body, token);
 }
 
-export const removeMovieFromWatchlist = async (token:string, movieId:number) => {
+export const removeMovieFromWatchlist = async (token:boolean, movieId:number) => {
     const body = {movieId:movieId.toString()};
     return apiCall('/removeWatchlist', 'DELETE', body, token);
 }
 
-export const getMoviesInWatchlist = async(token:string) => {
+export const getMoviesInWatchlist = async(token:boolean) => {
     return getApiCall('/getMoviesWatchlist', undefined, token)
 }

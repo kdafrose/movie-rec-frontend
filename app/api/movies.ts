@@ -28,8 +28,22 @@ export const popularMovies = async() => {
     return await getTMDBCall(url, TMDB_ACCESS_TOKEN);
 }
 
+export const getMovieCredits = async (movieId:string) => {
+    const url = `${BASE_URL}/${movieId}/credits?language=en-US`;
+    return await getTMDBCall(url, TMDB_ACCESS_TOKEN);
+}
+
+export const getMovieVideos = async(movieId:string) => {
+    const url = `${BASE_URL}/${movieId}/videos?language=en-US`;
+    return await getTMDBCall(url, TMDB_ACCESS_TOKEN);
+}
+
+export const getSimilarMovies = async(movieId:string) => {
+    const url = `${BASE_URL}/${movieId}/similar?language=en-US&page=1`;
+    return await getTMDBCall(url, TMDB_ACCESS_TOKEN);
+}
+
 export const searchMovie = async(query:string) => {
-    //const url = `${SEARCH_BASE_URL}/movie?query=${encodeURIComponent(query)}&include_adult=true&language=en-US&page=1`;
     const url = `${SEARCH_BASE_URL}/movie?query=${query}&include_adult=true&language=en-US&page=1`;
     const data =await getTMDBCall(url, TMDB_ACCESS_TOKEN);
     return data.results;

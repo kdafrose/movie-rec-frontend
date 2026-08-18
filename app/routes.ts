@@ -7,4 +7,5 @@ export default [
     route("/about", "routes/about.tsx"),
     route("/movie/:movieId", "routes/movieInfo.tsx"), //EDIT: add dynamic id route for movielist
     route("/search/:query", "routes/search.tsx"),
+    route("/watchlist", "routes/watchlist.tsx")
 ] satisfies RouteConfig;

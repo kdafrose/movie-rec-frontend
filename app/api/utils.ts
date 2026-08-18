@@ -9,17 +9,18 @@ const BASE_URL = import.meta.env.API_BASE_URL;
  * @returns data response
  */
 
-export const apiCall = async(endpoint:string, method:string, body?:Record<string, string | number>, token?:string) =>{
+export const apiCall = async(endpoint:string, method:string, body?:Record<string, string | number>, token?:boolean) =>{
     let headers:Record<string, string> = {
         'Content-Type':'application/json'
     }
 
-    if(token !== '') headers = {...headers, 'Authorization': `Bearer ${token}`}
+    //if(token) headers = {...headers, 'Authorization': `Bearer ${token}`}
 
     try{
         const response = await fetch(`${BASE_URL}/${endpoint}`,{
             method,
             headers,
+            credentials: token ? "include" : "omit",
             body:JSON.stringify(body)
         });
 
@@ -41,16 +42,17 @@ export const apiCall = async(endpoint:string, method:string, body?:Record<string
  * @param token 
  * @returns 
  */
-export const getApiCall = async(endpoint:string, queryParams?:Record<string, string>, token?:string) => {
+export const getApiCall = async(endpoint:string, queryParams?:Record<string, string>, token?:boolean) => {
     try{
         const queryString = new URLSearchParams(queryParams).toString();
         const url = queryString ? `${BASE_URL}/${endpoint}?${queryString}` : `${BASE_URL}/${endpoint}`;
 
         let headers:Record<string, string> = {}
-        if(token) headers = {...headers, 'Authorization': `Bearer ${token}`}
-
+        //if(token) headers = {...headers, 'Authorization': `Bearer ${token}`}
+        
         const response = await fetch(url, {
             method:"GET",
+            credentials: token ? "include" : "omit",
             headers
         });
 

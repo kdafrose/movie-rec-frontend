@@ -1,24 +1,33 @@
-import type { MovieDetail } from "../types";
+import type { MovieDetail, Movielist } from "../types";
 import React, {useEffect, useState} from "react";
 import { StarRating } from "~/components/starRating";
 import ReviewCard from "~/components/reviewCard";
 import {useParams} from "react-router";
-import {getMovieDetails} from "~/api/movies";
+import {getMovieDetails, getSimilarMovies} from "~/api/movies";
+import MovieCarousel from "~/components/MovieCarousel";
 
 export default function MovieInfo() {
     const { movieId } = useParams();
     const [movieDetails, setMovieDetails] = useState<MovieDetail | null>(null);
+    const [similarMovies, setSimilarMovies] = useState<Movielist[]>([])
 
     useEffect(() => {
         const fetchMovieDetails = async () => {
             if (movieId) {
-                const details = await getMovieDetails(movieId);
-                setMovieDetails(details);
+                // const details = await getMovieDetails(movieId);
+                // setMovieDetails(details);
+
+                const [movieInfo, similarMovie] = await Promise.all([
+                    getMovieDetails(movieId),
+                    getSimilarMovies(movieId)
+                ])
+                setMovieDetails(movieInfo);
+                setSimilarMovies(similarMovie.results);
             } 
         };
 
         fetchMovieDetails();
-    }, []);
+    }, [movieId]);
 
 
     return (
@@ -108,7 +117,7 @@ export default function MovieInfo() {
                     <a
                     href="#"
                     title=""
-                    className="text-white mt-4 sm:mt-0 bg-teal-700 hover:bg-teal-800 focus:ring-4 focus:ring-teal-300 font-medium rounded-lg text-sm px-5 py-2.5 dark:bg-teal-600 dark:hover:bg-teal-700 focus:outline-none dark:focus:ring-teal-800 flex items-center justify-center"
+                    className="text-white mt-4 sm:mt-0 bg-teal-600 hover:bg-teal-800 focus:ring-4 focus:ring-teal-300 font-medium rounded-lg text-sm px-5 py-2.5 dark:bg-teal-600 dark:hover:bg-teal-700 focus:outline-none dark:focus:ring-teal-800 flex items-center justify-center"
                     role="button"
                     >
                     <svg
@@ -142,9 +151,8 @@ export default function MovieInfo() {
                     
                     <div className="py-12">
                         <h2 className="text-2xl/9 font-bold tracking-tight text-gray-900 pb-6">My Review</h2>
-                        <ReviewCard review={movieDetails.overview} />
+                        <ReviewCard movieId={movieDetails.id} />
                     </div>
-                
                 </div>
             </div>
                 ) :
@@ -153,6 +161,9 @@ export default function MovieInfo() {
                 )}
             </div>
             </section>
+
+            <h2 className="text-2xl/9 font-bold tracking-tight text-gray-900 px-4 mx-34 ">Similar Movies</h2>
+            <MovieCarousel movies={similarMovies}/>
         </>
     )
 }

@@ -1,7 +1,6 @@
 import type { Route } from "./+types/home";
 import {useEffect, useState} from "react";
 import MovieCarousel from "../components/MovieCarousel";
-import { MOVIES_SAMPLE } from "../data/movies_sample";
 import { topRatedMovies, getUpcomingMovies, nowPlayingMovies as fetchaNowPlayingMovies, popularMovies as fetchPopularMovies} from "~/api/movies";
 
 export function meta({}: Route.MetaArgs) {

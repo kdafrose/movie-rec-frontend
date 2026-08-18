@@ -8,7 +8,7 @@ export default function AuthNavbar(){
             <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
                 <div className="flex h-16 items-center justify-between">
                 <div className="flex-1 md:flex md:items-center md:gap-12">
-                    <a className="block text-teal-600" href="#">
+                    <a className="block text-teal-600" href="/">
                     <span className="sr-only">Home</span>
                     <svg
                         className="h-8"
@@ -29,7 +29,7 @@ export default function AuthNavbar(){
                     <nav aria-label="Global" className="hidden md:block">
                     <ul className="flex items-center gap-6 text-sm">
                         <li>
-                        <a className="text-gray-500 transition hover:text-gray-500/75" href="#"> Watchlist </a>
+                        <a className="text-gray-500 transition hover:text-gray-500/75" href="/watchlist"> Watchlist </a>
                         </li>
                         <li>
                         <a className="text-gray-500 transition hover:text-gray-500/75" href="#"> Lists </a>
