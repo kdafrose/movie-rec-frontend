@@ -7,7 +7,7 @@ export default function AuthNavbar(){
         <header className="bg-white">
             <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
                 <div className="flex h-16 items-center justify-between">
-                <div className="flex-1 md:flex md:items-center md:gap-12">
+                <div className="flex-1 md:flex md:items-center md:gap-6">
                     <a className="block text-teal-600" href="/">
                     <span className="sr-only">Home</span>
                     <svg
@@ -23,6 +23,7 @@ export default function AuthNavbar(){
                         />
                     </svg>
                     </a>
+                    <h2 className=" text-center text-2xl/9 font-bold tracking-tight text-gray-900">youpick</h2>
                 </div>
 
                 <div className="md:flex md:items-center md:gap-6">

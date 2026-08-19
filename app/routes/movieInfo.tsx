@@ -1,28 +1,30 @@
-import type { MovieDetail, Movielist } from "../types";
+import type { MovieDetail, Movielist, CastMember } from "../types";
 import React, {useEffect, useState} from "react";
 import { StarRating } from "~/components/starRating";
 import ReviewCard from "~/components/reviewCard";
 import {useParams} from "react-router";
-import {getMovieDetails, getSimilarMovies} from "~/api/movies";
+import {getMovieDetails, getSimilarMovies, getMovieCredits} from "~/api/movies";
 import MovieCarousel from "~/components/MovieCarousel";
+import ReviewList from "~/components/reviewList";
 
 export default function MovieInfo() {
     const { movieId } = useParams();
+    const TMDB_IMAGE_BASE = import.meta.env.VITE_TMDB_IMAGE_BASE
     const [movieDetails, setMovieDetails] = useState<MovieDetail | null>(null);
     const [similarMovies, setSimilarMovies] = useState<Movielist[]>([])
+    const [cast, setCast] = useState<CastMember[]>([])
 
     useEffect(() => {
         const fetchMovieDetails = async () => {
             if (movieId) {
-                // const details = await getMovieDetails(movieId);
-                // setMovieDetails(details);
-
-                const [movieInfo, similarMovie] = await Promise.all([
+                const [movieInfo, similarMovie, movieCast] = await Promise.all([
                     getMovieDetails(movieId),
-                    getSimilarMovies(movieId)
+                    getSimilarMovies(movieId),
+                    getMovieCredits(movieId)
                 ])
                 setMovieDetails(movieInfo);
                 setSimilarMovies(similarMovie.results);
+                setCast(movieCast.cast);
             } 
         };
 
@@ -35,10 +37,30 @@ export default function MovieInfo() {
         <section className="py-8 bg-white md:py-16 dark:bg-gray-900 antialiased">
             <div className="max-w-screen-xl px-4 mx-auto 2xl:px-0">
                 {movieDetails ? (
-                                <div className="lg:grid lg:grid-cols-2 lg:gap-8 xl:gap-16">
-                <div className="shrink-0 max-w-md lg:max-w-lg mx-auto">
-                <img className="w-full dark:hidden" src={`https://image.tmdb.org/t/p/w500${movieDetails.poster_path}`} alt={movieDetails.title} />
-                <img className="w-full hidden dark:block" src={`https://image.tmdb.org/t/p/w500${movieDetails.poster_path}`} alt={movieDetails.title} />
+                <div className="lg:grid lg:grid-cols-2 lg:gap-8 xl:gap-16">
+                    <div className="shrink-0 max-w-md lg:max-w-lg mx-auto">
+                    <img className="w-full dark:hidden" src={`https://image.tmdb.org/t/p/w500${movieDetails.poster_path}`} alt={movieDetails.title} />
+                                    <div className="mt-4">
+                    <h2 className="text-lg font-semibold text-gray-900 dark:text-white mb-4">Cast</h2>
+                    <div className="flex overflow-x-auto gap-8">
+                        {cast.map((member) => (
+                            <div key={member.id} className="flex flex-col items-center text-center">
+                                <div className="w-18 h-18 rounded-full overflow-hidden">
+                                    <img
+                                        src={member.profile_path
+                                            ? `${TMDB_IMAGE_BASE}${member.profile_path}`
+                                            : "/placeholder-avatar.png"}
+                                        alt={member.name}
+                                        className="w-full h-full object-cover "
+                                    />
+                                </div>
+                                <p className="mt-2 text-sm font-medium text-gray-900 dark:text-white">{member.name}</p>
+                                <p className="text-xs text-gray-500 dark:text-gray-400">{member.character}</p>
+                            </div>
+                        ))}
+                    </div>
+                </div>
+                    <img className="w-full hidden dark:block" src={`https://image.tmdb.org/t/p/w500${movieDetails.poster_path}`} alt={movieDetails.title} />
                 </div>
 
                 <div className="mt-6 sm:mt-8 lg:mt-0">
@@ -149,8 +171,9 @@ export default function MovieInfo() {
                     {movieDetails.overview}
                 </p>
                     
-                    <div className="py-12">
-                        <h2 className="text-2xl/9 font-bold tracking-tight text-gray-900 pb-6">My Review</h2>
+                    <div className="py-6">
+                        <h2 className="text-lg font-bold tracking-tight text-gray-900 mb-4">My Review</h2>
+                        {/**Need to show something different if a user is not logged in */}
                         <ReviewCard movieId={movieDetails.id} />
                     </div>
                 </div>
@@ -162,6 +185,7 @@ export default function MovieInfo() {
             </div>
             </section>
 
+            <ReviewList />
             <h2 className="text-2xl/9 font-bold tracking-tight text-gray-900 px-4 mx-34 ">Similar Movies</h2>
             <MovieCarousel movies={similarMovies}/>
         </>

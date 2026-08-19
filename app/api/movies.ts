@@ -33,11 +33,6 @@ export const getMovieCredits = async (movieId:string) => {
     return await getTMDBCall(url, TMDB_ACCESS_TOKEN);
 }
 
-export const getMovieVideos = async(movieId:string) => {
-    const url = `${BASE_URL}/${movieId}/videos?language=en-US`;
-    return await getTMDBCall(url, TMDB_ACCESS_TOKEN);
-}
-
 export const getSimilarMovies = async(movieId:string) => {
     const url = `${BASE_URL}/${movieId}/similar?language=en-US&page=1`;
     return await getTMDBCall(url, TMDB_ACCESS_TOKEN);

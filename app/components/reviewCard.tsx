@@ -18,7 +18,7 @@ const sampleReview ={
 }
 
 export default function ReviewCard({movieId}: {movieId: number}) {
-    const [review,setReview] = useState<ReviewCard>();
+    const [review,setReview] = useState<ReviewCard>(sampleReview);
     useEffect(() =>{
         const getUserReview = async() =>{
             //await getUserReviewsForMovie(true, movieId).then(setReview)
@@ -35,7 +35,7 @@ export default function ReviewCard({movieId}: {movieId: number}) {
                     <StarRating voteAverage={review.rating} />
                 </div>
                 <blockquote>
-                    <p className="text-2xl font-semibold text-heading tracking-tight">{review.review}</p>
+                    <p className="text-lg font-semibold text-heading tracking-tight">{review.review}</p>
                 </blockquote>
                 <figcaption className="flex items-center mt-6 space-x-3 rtl:space-x-reverse">
                     <img className="w-6 h-6 rounded-full" src="https://flowbite.s3.amazonaws.com/blocks/marketing-ui/avatars/bonnie-green.png" alt="profile picture" />
@@ -48,7 +48,7 @@ export default function ReviewCard({movieId}: {movieId: number}) {
             ) : (
                 <figure className="max-w-screen-md">
                     <div className="flex items-center space-x-1 mb-4">
-                        <StarRating voteAverage={0} />
+                        
                     </div>
                     <textarea
                         placeholder="Write your review..."

@@ -70,3 +70,18 @@ export interface MovieDetail {
     vote_average: number;
     vote_count: number;
 }
+
+export interface CastMember {
+    id: number;
+    name: string;
+    original_name: string;
+    character: string;
+    profile_path: string | null;
+    popularity: number;
+    order: number;
+    gender: number;
+    adult: boolean;
+    known_for_department: string;
+    cast_id: number;
+    credit_id: string;
+}
