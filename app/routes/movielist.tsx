@@ -7,6 +7,7 @@ export default function MovieList(){
     const movies = MOVIES_SAMPLE.slice(0,6)
     const TMDB_IMAGE_BASE = import.meta.env.VITE_TMDB_IMAGE_BASE
     const [movielists, setMovieLists] = useState()
+    const sampleMovielist = 'rom comming'
 
     return (
         <>
@@ -22,7 +23,9 @@ export default function MovieList(){
                 <h2 className="text-xl font-semibold">Movie List here</h2>
                 <p>Description here for the movie list user has set</p>
             </div>
-            <button className="px-4 py-2 mt-4 bg-teal-600 text-white text-sm font-medium rounded-lg hover:bg-teal-800 focus:ring-4 transition">View List</button>
+
+            {/**Need to look a list of movieLists of user */}
+            <Link to={`/list/${sampleMovielist}`} className="px-4 py-2 mt-4 bg-teal-600 text-white text-sm font-medium rounded-lg hover:bg-teal-800 focus:ring-4 transition">View List</Link>
             <div className="mt-6 grid grid-cols-2 gap-x-6 gap-y-10 sm:grid-cols-3 lg:grid-cols-6 xl:gap-x-8">
                     {movies.map((movie) => (
                         <div key={movie.id} className="group relative">

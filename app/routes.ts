@@ -10,5 +10,6 @@ export default [
     route("/watchlist", "routes/watchlist.tsx"),
     route('/lists', 'routes/movielist.tsx'),
     route('/myreviews', 'routes/userreviews.tsx'),
-    route('/profile', 'routes/profile.tsx')
+    route('/profile', 'routes/profile.tsx'),
+    route('/list/:listName', 'routes/list.tsx')
 ] satisfies RouteConfig;

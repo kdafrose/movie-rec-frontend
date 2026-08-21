@@ -35,6 +35,29 @@ export default function UserReviews(){
             name:'Kathreen Peaches',
             userId: 4,
             movieId:240
+        },
+        {
+            review:'Omg so nice and good',
+            numStar:4.23,
+            username:'usernamehere',
+            name:'Kathreen Peaches',
+            userId: 4,
+            movieId:240
+        },{
+            review:'Omg so nice and good blah blah add more words so i can see how much space it takes up',
+            numStar:4.23,
+            username:'usernamehere',
+            name:'Kathreen Peaches',
+            userId: 4,
+            movieId:240
+        },
+        {
+            review:'Omg so nice and good',
+            numStar:4.23,
+            username:'usernamehere',
+            name:'Kathreen Peaches',
+            userId: 4,
+            movieId:240
         }
     ]
 
