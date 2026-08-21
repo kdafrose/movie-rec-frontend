@@ -8,28 +8,32 @@ export default function ReviewList(){
             numStar:4.23,
             username:'usernamehere',
             name:'Kathreen Peaches',
-            userId: 1
+            userId: 1,
+            movieId:238
         },
         {
             review:'Omg so nice and good',
             numStar:4.23,
             username:'usernamehere',
             name:'Kathreen Peaches',
-            userId: 2
+            userId: 2,
+            movieId:278
         },
         {
             review:'Omg so nice and good',
             numStar:4.23,
             username:'usernamehere',
             name:'Kathreen Peaches',
-            userId: 3
+            userId: 3,
+            movieId:772071
         },
         {
             review:'Omg so nice and good',
             numStar:4.23,
             username:'usernamehere',
             name:'Kathreen Peaches',
-            userId: 4
+            userId: 4,
+            movieId:240
         }
     ]
     const [movieReviews, setMovieReviews] = useState(reviewListSample)

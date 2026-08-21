@@ -18,7 +18,7 @@ const sampleReview ={
 }
 
 export default function ReviewCard({movieId}: {movieId: number}) {
-    const [review,setReview] = useState<ReviewCard>(sampleReview);
+    const [review,setReview] = useState<ReviewCard>();
     useEffect(() =>{
         const getUserReview = async() =>{
             //await getUserReviewsForMovie(true, movieId).then(setReview)

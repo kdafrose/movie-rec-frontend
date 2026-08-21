@@ -85,3 +85,12 @@ export interface CastMember {
     cast_id: number;
     credit_id: string;
 }
+
+export interface Reviews {
+    review:string;
+    numStar:number;
+    username:string;
+    name:string;
+    userId:number;
+    movieId:number
+}

@@ -33,10 +33,10 @@ export default function AuthNavbar(){
                         <a className="text-gray-500 transition hover:text-gray-500/75" href="/watchlist"> Watchlist </a>
                         </li>
                         <li>
-                        <a className="text-gray-500 transition hover:text-gray-500/75" href="#"> Lists </a>
+                        <a className="text-gray-500 transition hover:text-gray-500/75" href="/lists"> Lists </a>
                         </li>
                         <li>
-                        <a className="text-gray-500 transition hover:text-gray-500/75" href="#"> Reviews </a>
+                        <a className="text-gray-500 transition hover:text-gray-500/75" href="/myreviews"> Reviews </a>
                         </li>
 
                     </ul>
@@ -67,7 +67,7 @@ export default function AuthNavbar(){
                     >
                         <div className="p-2">
                         <a
-                            href="#"
+                            href="/profile"
                             className="block rounded-lg px-4 py-2 text-sm text-gray-500 hover:bg-gray-50 hover:text-gray-700"
                             role="menuitem"
                         >
