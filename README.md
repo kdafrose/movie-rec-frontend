@@ -8,7 +8,7 @@ A serverless full-stack application built on AWS. Search for movies, discover ti
 ## Tech Stack
 
 **Frontend**
-- React Router, TypeScript
+- React Router, TypeScript, Tailwind Components, HyperUI Components, and Flowbite Components
 
 **External API**
 - [The Movie Database (TMDB)](https://www.themoviedb.org/documentation/api)
@@ -46,7 +46,7 @@ Everything guests can do, plus:
 
 ## What I Learned
 
-This was my first serverless project, and it was a genuinely fun challenge. Working with AWS pushed me to think about development from a new perspective — not just *how* to build something, but *what service* makes sense for it: what's cost-efficient, what scales well, and how serverless architecture changes the way you think about backend logic and infrastructure.
+This was my first serverless project, and it was a genuinely fun challenge. Working with AWS pushed me to think about development from a new perspective — not just *how* to build something, but *what service* makes sense for it: what's cost-efficient, what scales well, and how serverless architecture changes the way you think about backend logic and infrastructure. As well as how to debug on AWS, for this project I used CloudWatch a lot, I could see what the exact error was on my Lambda functions 
 
 ---
 
@@ -73,5 +73,3 @@ Open [http://localhost:5173](http://localhost:5173) in your browser.
 ---
 
 ## Demo
-
-*Video coming soon*
