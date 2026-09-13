@@ -73,3 +73,4 @@ Open [http://localhost:5173](http://localhost:5173) in your browser.
 ---
 
 ## Demo
+https://github.com/user-attachments/assets/0c8572e1-9ea0-4cf8-8295-034c222d2cda
