@@ -1,5 +1,5 @@
 import React from "react";
-import MovieReviewsCard from "~/components/movieReviewsCard";
+import MovieReviewsCard from "~/components/MovieReviewsCard";
 import { MOVIES_SAMPLE } from "~/data/movies_sample";
 
 export default function UserReviews(){

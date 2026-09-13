@@ -1,7 +1,7 @@
 import { MOVIES_SAMPLE } from "~/data/movies_sample"
 import type { MovieDetail } from "~/types"
 import {useState, useEffect,useMemo} from 'react'
-import MovieReviewsCard from "~/components/movieReviewsCard"
+import MovieReviewsCard from "~/components/MovieReviewsCard"
 
 interface ListProps {
     movieListId:number;
